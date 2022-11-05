@@ -1,0 +1,11 @@
+[Unit]
+Description=git and make
+
+[Service]
+After=multi-user.target
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=pacman -Sy --noconfirm make git
+
+[Install]
+WantedBy=multi-user.target
