@@ -55,13 +55,22 @@ c.sendline('PS1='+ PS1)
 
 serviceName = 'git-and-make.service'
 with open(serviceName) as service:
-    c.sendline('cat <<EOF > /etc/systemd/system/' + serviceName)
+    c.sendline('cat <<EOOF > /etc/systemd/system/' + serviceName)
     c.sendline("'" + service.read() + "'")
-    c.sendline('EOF')
+    c.sendline('EOOF')
 
 c.sendline('systemctl daemon-reload')
-c.sendline('systemctl enable --now git-and-make')
+c.sendline('systemctl start git-and-make')
+# c.expect(PS1)
 
+
+# for i in range(120):
+#     c.sendline('systemctl is-active pacman-init.service')
+#     try:
+#         c.expect
+#     except Exception as e:
+#         raise e
+#     sleep(1)
 
 c.sendline()
 c.interact()

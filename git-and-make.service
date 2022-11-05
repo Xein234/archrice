@@ -1,9 +1,8 @@
 [Unit]
 Description=git and make
+After=reflector.service
 
 [Service]
-After=multi-user.target
-Type=oneshot
 RemainAfterExit=yes
 ExecStart=pacman -Sy --noconfirm make git
 
